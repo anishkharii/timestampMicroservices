@@ -1,0 +1,15 @@
+{
+  "name": "timestamp_microservice",
+  "version": "1.0.0",
+  "description": "A Unix to date and vice-versa converter",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "anish khari",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemon": "^3.0.2"
+  }
+}

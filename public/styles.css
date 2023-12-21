@@ -1,0 +1,22 @@
+body{
+    text-align: center;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: rgb(255, 248, 239);
+}
+hr{
+    width:70%;
+    color:rgba(255, 221, 255, 0);
+    border-top:5px dotted #000;
+}
+a{
+    display: block;
+    margin:3%;
+}
+.section{
+    display: inline-block;
+    padding: 0 5%;
+    border-radius: 10px;
+    margin: 2%;
+    box-shadow: 0px 0px 10px #9595953b;
+    background-color: rgb(255, 255, 255);
+}
