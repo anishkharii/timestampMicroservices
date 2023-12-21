@@ -1,8 +1,8 @@
 const express = require('express');
-
+const cors = require("cors");
 const app = express();
 app.use('/public',express.static('public'));
-
+app.use(cors({optionsSuccessStatus:200}));
 const options={
     weekday:'short',
     day:'2-digit',
@@ -19,10 +19,9 @@ app.get('/',(req,res)=>{
 })
 app.get('/api',(req,res)=>{
     let date = new Date();
-    
-    let formattedDate = new Intl.DateTimeFormat('en-US',options).format(date);
-    let unix = date.getTime();
-    res.json({"unix":unix,"utc":formattedDate});
+    let unix = date.getTime(); 
+    let utc = date.toUTCString();
+    res.json({unix,utc});
 })
 app.get('/api/:date',(req,res)=>{
     const dateParam = req.params.date;
@@ -31,15 +30,16 @@ app.get('/api/:date',(req,res)=>{
     const unixFormatCheck = /^\d+$/;
 
     if(yyyyFormatCheck.test(dateParam)){
-        let parsedDate = new Date(dateParam);
-        const formattedDate = new Intl.DateTimeFormat('en-US',options).format(parsedDate);
-        let unix = parsedDate.getTime();
-        res.json({"unix":unix,"utc":formattedDate});
+        let date = new Date(dateParam);
+        let unix =date.getTime();
+        let utc = date.toUTCString();
+        res.json({unix,utc});
     }
     else if(unixFormatCheck.test(dateParam)){
-        let parsedDate = new Date(parseInt(dateParam));
-        const formattedDate = new Intl.DateTimeFormat('en-US',options).format(parsedDate);
-        res.json({"unix":dateParam,"utc":formattedDate});
+        let date = new Date(parseInt(dateParam));
+        let unix =date().getTime();
+        let utc = date.toUTCString();
+        res.json({unix,utc});
     }
     else{
         res.json({error:"Invalid Date"});
